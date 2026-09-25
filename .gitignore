@@ -1,0 +1,67 @@
+# OS & IDE
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Java & Gradle & Maven
+build/
+**/build/
+target/
+**/target/
+.gradle/
+**/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+*.class
+*.jar
+*.war
+*.ear
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+**/bin/
+out/
+**/out/
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+**/.venv/
+env/
+venv/
+ENV/
+
+# Go
+titan-gateway-go/gateway
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# iOS / Xcode
+xcuserdata/
+**/xcuserdata/
+*.xcuserstate
+*.xcbkptlist
+*.ninja
+DerivedData/
+
+# Logs
+logs/
+**/logs/
+*.log
+
+# Environment variables
+.env.local
