@@ -8,28 +8,28 @@ A production-grade, distributed Core Banking system designed with microservices 
 
 ```mermaid
 flowchart TD
-    Client["📱 iOS Swift Client (Frontend-IOS-Swfit)"] -->|HTTP / REST| Gateway["🛡️ API Gateway (:8088)\n(titan-gateway-go)"]
+    Client["📱 iOS Swift Client (Frontend-IOS-Swfit)"] -->|"HTTP / REST"| Gateway["🛡️ API Gateway (:8088)<br/>(titan-gateway-go)"]
 
-    Gateway -->|Auth / Accounts / Tx| Core["🏛️ Core Banking (:8080)\n(titan-core-banking)"]
-    Gateway -->|Notifications| Notif["🔔 Notification Service (:8084)\n(titan-notifications-service)"]
-    Gateway -->|Promotions / GraphQL| Promo["🎁 Promotions & Quests (:8083)\n(titan-promotions-service)"]
-    Gateway -->|Risk Reports| AI_HTTP["📊 AI Reports (:8085)\n(titan-ai-service)"]
+    Gateway -->|"Auth / Accounts / Tx"| Core["🏛️ Core Banking (:8080)<br/>(titan-core-banking)"]
+    Gateway -->|"Notifications"| Notif["🔔 Notification Service (:8084)<br/>(titan-notifications-service)"]
+    Gateway -->|"Promotions / GraphQL"| Promo["🎁 Promotions & Quests (:8083)<br/>(titan-promotions-service)"]
+    Gateway -->|"Risk Reports"| AI_HTTP["📊 AI Reports (:8085)<br/>(titan-ai-service)"]
 
-    Core -->|gRPC CheckRisk (:50051)| AI_gRPC["🧠 AI Risk Engine\n(titan-ai-service)"]
+    Core -->|"gRPC CheckRisk (:50051)"| AI_gRPC["🧠 AI Risk Engine<br/>(titan-ai-service)"]
 
-    Core -->|Transactional Outbox| Kafka["📨 Apache Kafka (KRaft :9092)"]
-    Kafka -->|banking.transactions.completed| Notif
-    Kafka -->|banking.transactions.completed| Promo
-    Kafka -->|banking.rewards.granted| Core
+    Core -->|"Transactional Outbox"| Kafka["📨 Apache Kafka (KRaft :9092)"]
+    Kafka -->|"banking.transactions.completed"| Notif
+    Kafka -->|"banking.transactions.completed"| Promo
+    Kafka -->|"banking.rewards.granted"| Core
 
     Core --- Redis[("⚡ Redis Cache (:6379)")]
     Notif --- Redis
     Promo --- Redis
 
-    Core --- Postgres[("🐘 PostgreSQL (:5432)\ntitandb")]
-    Notif --- PostgresNotification[("🐘 PostgreSQL (:5432)\nnotificationdb")]
-    Promo --- PostgresPromo[("🐘 PostgreSQL (:5432)\npromotiondb (PostGIS)")]
-    AI_HTTP --- PostgresSystem[("🐘 PostgreSQL (:5432)\ntitan_systemdb")]
+    Core --- Postgres[("🐘 PostgreSQL (:5432)<br/>titandb")]
+    Notif --- PostgresNotification[("🐘 PostgreSQL (:5432)<br/>notificationdb")]
+    Promo --- PostgresPromo[("🐘 PostgreSQL (:5432)<br/>promotiondb (PostGIS)")]
+    AI_HTTP --- PostgresSystem[("🐘 PostgreSQL (:5432)<br/>titan_systemdb")]
 ```
 
 ---
